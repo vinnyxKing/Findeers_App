@@ -55,9 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 15,),
 
             TextButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context)=>const SignUp()));
-            },
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const SignUp()));
+                },
                 child: ButtonWidget(backgroundcolor: Colors.white,
                 text: "Sign Up Here", textColor: AppColours.smallTextColour)
 
