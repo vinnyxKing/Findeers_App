@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:findeers_app/screens/homescreen.dart';
 import 'package:findeers_app/widgets/button_widget.dart';
 import 'package:findeers_app/widgets/textfieldwidget.dart';
@@ -7,41 +9,6 @@ import '../utilities/app_colors.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp
-({Key? key}) : super(key: key);
-
-  @override
-  State<SignUp
-> createState() => _SignUp
-State();
-}
-
-class _SignUpState extends State<SignUp> {
-
-  TextEditingController emailController,  userNameController, 
-  pswrd1Controller, 
-  pswrd2Controller, birthdayController;
-    DatabaseReference _ref;
-
-@override
-void initState() { 
-  super.initState();
-  emailController = TextEditingController();
-  userNameController = TextEditingController();
-  pswrd1Controller = TextEditingController();
-  pswrd2Controller = TextEditingController();
-  birthdayController = TextEditingController();
-  _ref = FirebaseDatabase.instance.reference().child('Users');
-}
-
-  Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
-  }
-}
-/////////////////////////////////////////////////////////////////////
-class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
 
   @override
@@ -59,7 +26,13 @@ class SignUp extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
         decoration: const BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.cover, image: AssetImage("assets/bg1.jpg"))),
+                fit: BoxFit.cover,
+                image: AssetImage(
+                    "assets/bg1.jpg"
+                )
+            )
+        ),
+
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,80 +40,73 @@ class SignUp extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Row(children: [
-                    const SizedBox(
-                      height: 110,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: AppColours.secondaryColour,
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                          text: "Findeer",
-                          style: TextStyle(
-                              color: AppColours.mainColour,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold),
-                          children: [
-                            TextSpan(
-                              text: "\nSIGN UP HERE",
+                  Row(
+                      children: [
+                        const SizedBox(height: 110,),
+                        IconButton(onPressed: (){
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context)=>const HomeScreen()));
+                        },
+                          icon: Icon(Icons.arrow_back,
+                            color: AppColours.secondaryColour,),),
+                        RichText(
+                          text: TextSpan(
+                              text: "Findeer",
                               style: TextStyle(
-                                color: AppColours.mainColour,
-                                fontSize: 15,
+                                  color: AppColours.mainColour,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold
                               ),
-                            ),
-                          ]),
-                    ),
-                  ]),
+                              children: [
+                                TextSpan(
+                                  text: "\nSIGN UP HERE",
+                                  style: TextStyle(
+                                    color: AppColours.mainColour,
+                                    fontSize: 15,
+                                  ),),
+                              ]
+                          ),
+                        ),
+                      ]
+                  ),
                 ],
               ),
               Column(
                 children: [
-                  TextFieldWidget(
-                      textcontroller: emailController,
-                      hintText: "Email",
-                      borderRadius: 30),
-                  TextFieldWidget(
-                      textcontroller: userNameController,
-                      hintText: "Username",
-                      borderRadius: 30),
-                  TextFieldWidget(
-                      textcontroller: pswrd1Controller,
-                      hintText: "Password",
-                      borderRadius: 30),
-                  TextFieldWidget(
-                      textcontroller: pswrd2Controller,
-                      hintText: "Confrim password",
-                      borderRadius: 30),
-                  TextFieldWidget(
-                      textcontroller: birthdayController,
-                      hintText: "dd/mm/yyyy",
-                      borderRadius: 30)
+                  SizedBox(height: 10),
+                  TextFieldWidget(textcontroller: emailController, hintText: "Email", borderRadius: 30),
+                  SizedBox(height: 5),
+                  TextFieldWidget(textcontroller: userNameController, hintText: "Username", borderRadius: 30),
+                  SizedBox(height: 5),
+                  TextFieldWidget(textcontroller: pswrd1Controller, hintText: "Password", borderRadius: 30),
+                  SizedBox(height: 5),
+                  TextFieldWidget(textcontroller: pswrd2Controller, hintText: "Confrim password", borderRadius: 30),
+                  SizedBox(height: 5),
+                  TextFieldWidget(textcontroller: birthdayController, hintText: "dd/mm/yyyy", borderRadius: 30)
+
                 ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
-              ),
+              SizedBox(height: MediaQuery.of(context).size.height/8,),
               TextButton(
-                  onPressed: () {},
-                  child: ButtonWidget(
-                      backgroundcolor: AppColours.mainColour,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(300, 100),
+                    maximumSize: const Size(300, 100),
+                  ),
+                  onPressed: (){},
+                  child: ButtonWidget(backgroundcolor: AppColours.mainColour,
                       text: "Create",
                       textColor: Colors.white)),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20,),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }
