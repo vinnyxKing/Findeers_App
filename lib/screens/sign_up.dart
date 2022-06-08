@@ -1,57 +1,38 @@
 import 'package:findeers_app/screens/homescreen.dart';
 import 'package:findeers_app/widgets/button_widget.dart';
 import 'package:findeers_app/widgets/textfieldwidget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../utilities/app_colors.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp
-({Key? key}) : super(key: key);
-
-  @override
-  State<SignUp
-> createState() => _SignUp
-State();
-}
-
-class _SignUpState extends State<SignUp> {
-
-  TextEditingController emailController,  userNameController, 
-  pswrd1Controller, 
-  pswrd2Controller, birthdayController;
-    DatabaseReference _ref;
-
-@override
-void initState() { 
-  super.initState();
-  emailController = TextEditingController();
-  userNameController = TextEditingController();
-  pswrd1Controller = TextEditingController();
-  pswrd2Controller = TextEditingController();
-  birthdayController = TextEditingController();
-  _ref = FirebaseDatabase.instance.reference().child('Users');
-}
-
-  Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
-  }
-}
-/////////////////////////////////////////////////////////////////////
-class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController userNameController = TextEditingController();
-    TextEditingController pswrd1Controller = TextEditingController();
-    TextEditingController pswrd2Controller = TextEditingController();
-    TextEditingController birthdayController = TextEditingController();
+  State<SignUp> createState() => _SignUpState();
+}
 
+class _SignUpState extends State<SignUp> {
+  late TextEditingController emailController,
+      userNameController,
+      pswrd1Controller,
+      pswrd2Controller,
+      birthdayController;
+  late DatabaseReference _ref;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    userNameController = TextEditingController();
+    pswrd1Controller = TextEditingController();
+    pswrd2Controller = TextEditingController();
+    birthdayController = TextEditingController();
+    _ref = FirebaseDatabase.instance.reference().child('Users');
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.maxFinite,
@@ -76,13 +57,13 @@ class SignUp extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back,
                         color: AppColours.secondaryColour,
                       ),
                     ),
                     RichText(
-                      text: TextSpan(
+                      text: const TextSpan(
                           text: "Findeer",
                           style: TextStyle(
                               color: AppColours.mainColour,
@@ -129,8 +110,10 @@ class SignUp extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 3,
               ),
               TextButton(
-                  onPressed: () {},
-                  child: ButtonWidget(
+                  onPressed: () {
+                    addToDb();
+                  },
+                  child: const ButtonWidget(
                       backgroundcolor: AppColours.mainColour,
                       text: "Create",
                       textColor: Colors.white)),
@@ -142,5 +125,21 @@ class SignUp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void addToDb() {
+    String name = userNameController.text;
+    String email = emailController.text;
+    String password1 = pswrd1Controller.text;
+    String password2 = pswrd2Controller.text;
+
+    Map<String, String> users = {
+      'name': name,
+      'email': email,
+      'password1': password1,
+      'password2': password2,
+    };
+
+    _ref.push().set(users);
   }
 }

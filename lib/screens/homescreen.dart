@@ -1,7 +1,5 @@
-import 'dart:ui';
 import 'package:findeers_app/screens/sign_in.dart';
 import 'package:findeers_app/screens/sign_up.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../utilities/app_colors.dart';
 import '../widgets/button_widget.dart';
@@ -26,54 +24,50 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RichText(
-              text: TextSpan(
-                text: "Findeer",
-                style: TextStyle(
-                  color: AppColours.mainColour,
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold
-                ),
-                children: [
-                  TextSpan(
-                  text: "\nFind All the Important things",
+              text: const TextSpan(
+                  text: "Findeer",
                   style: TextStyle(
                       color: AppColours.mainColour,
-                      fontSize: 20,
-                  ),),
-                ]
-              ),
+                      fontSize: 60,
+                      fontWeight: FontWeight.bold),
+                  children: [
+                    TextSpan(
+                      text: "\nFind All the Important things",
+                      style: TextStyle(
+                        color: AppColours.mainColour,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ]),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height/2.5),
-
-            TextButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context)=>const SignIn()));
-            },
-              child: ButtonWidget(backgroundcolor: AppColours.mainColour,
-                text: "Sign In", textColor: Colors.white),),
-
-            const SizedBox(height: 15,),
-
-            TextButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context)=>const SignUp()));
-            },
-                child: ButtonWidget(backgroundcolor: Colors.white,
-                text: "Sign Up Here", textColor: AppColours.smallTextColour)
-
-            )
-
+            SizedBox(height: MediaQuery.of(context).size.height / 2.5),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const SignIn()));
+              },
+              child: const ButtonWidget(
+                  backgroundcolor: AppColours.mainColour,
+                  text: "Sign In",
+                  textColor: Colors.white),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const SignUp()));
+                },
+                child: const ButtonWidget(
+                    backgroundcolor: Colors.white,
+                    text: "Sign Up Here",
+                    textColor: AppColours.smallTextColour))
           ],
         ),
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(
-              "assets/bg2.jpg"
-            )
-          )
-        ),
-
+            image: DecorationImage(
+                fit: BoxFit.cover, image: AssetImage("assets/bg2.jpg"))),
       ),
     );
   }
