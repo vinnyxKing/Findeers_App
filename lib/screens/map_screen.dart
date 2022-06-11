@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:findeers_app/utilities/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'homescreen.dart';
@@ -23,13 +20,7 @@ class _MapScreenState extends State<MapScreen> {
         padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
         decoration: const BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                    "assets/location1.jpg"
-                )
-            )
-        ),
-
+                fit: BoxFit.cover, image: AssetImage("assets/location1.jpg"))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,27 +29,31 @@ class _MapScreenState extends State<MapScreen> {
               children: [
                 Row(
                   children: [
-                      const SizedBox(height: 30,),
-                      IconButton(onPressed: (){
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    IconButton(
+                      onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context)=>const HomeScreen()));
+                            builder: (context) => const HomeScreen()));
                       },
-                        icon: Icon(Icons.arrow_back,
-                          color: AppColours.secondaryColour,),),
-                  RichText(
-                    text: TextSpan(
-                      text: "Findeer",
-                      style: TextStyle(
-                          color: AppColours.mainColour,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: AppColours.secondaryColour,
                       ),
-                    ),),
+                    ),
+                    RichText(
+                      text: const TextSpan(
+                        text: "Findeer",
+                        style: TextStyle(
+                            color: AppColours.mainColour,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ),
-                Column(
-
-                )
+                Column()
               ],
             ),
           ],
