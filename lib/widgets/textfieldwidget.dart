@@ -3,21 +3,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  final TextEditingController textcontroller;
+
+  final TextEditingController textEditingController;
   final String hintText;
   final double borderRadius;
-  final int? maxlines;
+  final bool isPass;
+
   const TextFieldWidget({Key? key,
-    required this.textcontroller,
+    required this.textEditingController,
     required this.hintText,
-    this.borderRadius = 30,
-    this.maxlines}) : super(key: key);
+    required this.borderRadius,
+    this.isPass = false,
+
+    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return  TextField(
-      maxLines: 1,
-      controller: textcontroller,
+      controller: textEditingController,
       decoration: InputDecoration(
           filled: true,
           fillColor: AppColours.textHolder,
@@ -29,14 +32,16 @@ class TextFieldWidget extends StatelessWidget {
                   width: 1
               )
           ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(
-            color: Colors.white,
-            width: 1
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+              borderSide: const BorderSide(
+                  color: Colors.white,
+                  width: 1
+              )
           )
-        )
       ),
+
+      obscureText: isPass,
     );
   }
 }

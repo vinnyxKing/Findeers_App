@@ -19,7 +19,7 @@ class ButtonWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height/14,
       decoration: BoxDecoration(
         color: backgroundcolor,
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Center(
         child: Text(text, style: TextStyle(
