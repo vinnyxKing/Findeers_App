@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:findeers_app/screens/homescreen.dart';
 import 'package:findeers_app/screens/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/index_screen.dart';
 
@@ -24,8 +24,11 @@ class AuthUser{
           ),
         );
       });
-      await auth.signInWithEmailAndPassword(email: email.text, password: password.text).then((value){
+      await auth.signInWithEmailAndPassword(email: email.text, password: password.text).then((value) async {
         print("Loged in successfully");
+
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        preferences.setString('email', email.text);
 
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (context) => IndexScreen()),
@@ -66,6 +69,8 @@ class AuthUser{
   }
 
   void logOutUser(context)async{
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('email', email.text);
     auth.signOut();
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder:
         (context) =>HomeScreen()), (route) => false);
