@@ -1,5 +1,7 @@
 import 'dart:ui';
+import 'package:findeers_app/screens/sign_in.dart';
 import 'package:findeers_app/utilities/app_colors.dart';
+import 'package:findeers_app/utilities/auth_method.dart';
 import 'package:findeers_app/widgets/button_widget.dart';
 import 'package:findeers_app/widgets/textfieldwidget.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,11 +17,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  TextEditingController fullNameController = TextEditingController();
+  AuthUser authUser = AuthUser();
+
+  TextEditingController fNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController userNameController = TextEditingController();
+  TextEditingController lNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController pass2Controller = TextEditingController();
+  //TextEditingController pass2Controller = TextEditingController();
   TextEditingController genderController = TextEditingController();
 
   String gender = "male";
@@ -27,11 +31,11 @@ class _SignUpState extends State<SignUp> {
   @override
   void dispose() {
     super.dispose();
-    fullNameController.dispose();
+    fNameController.dispose();
     emailController.dispose();
-    userNameController.dispose();
+    lNameController.dispose();
     passwordController.dispose();
-    pass2Controller.dispose();
+    //pass2Controller.dispose();
     genderController.dispose();
   }
 
@@ -87,33 +91,27 @@ class _SignUpState extends State<SignUp> {
                   Column(
                     children: [
                       TextFieldWidget(
-                        textEditingController: fullNameController,
-                        hintText: "Enter Full Name",
+                        textEditingController: fNameController,
+                        hintText: "Enter First Name",
                         borderRadius: 30,
                       ),
                       SizedBox(height: 10),
                       TextFieldWidget(
-                        textEditingController: emailController,
+                        textEditingController: lNameController,
+                        hintText: "Enter Last Name",
+                        borderRadius: 30,
+                      ),
+                      SizedBox(height: 10),
+                      TextFieldWidget(
+                        textEditingController: authUser.email,
                         hintText: "Enter Email",
                         borderRadius: 30,
                       ),
+
                       SizedBox(height: 10),
                       TextFieldWidget(
-                        textEditingController: userNameController,
-                        hintText: "Enter Username",
-                        borderRadius: 30,
-                      ),
-                      SizedBox(height: 10),
-                      TextFieldWidget(
-                        textEditingController: passwordController,
+                        textEditingController: authUser.password,
                         hintText: "Enter Password",
-                        borderRadius: 30,
-                        isPass: true,
-                      ),
-                      SizedBox(height: 10),
-                      TextFieldWidget(
-                        textEditingController: pass2Controller,
-                        hintText: "Confirm Password",
                         borderRadius: 30,
                         isPass: true,
                       ),
@@ -152,23 +150,23 @@ class _SignUpState extends State<SignUp> {
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 14),
-                  TextButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(300, 100),
-                        maximumSize: const Size(300, 100),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const IndexScreen()));
-                      },
-                      child: ButtonWidget(
-                        backgroundcolor: AppColours.mainColour,
-                        text: "SIGN UP",
-                        textColor: Colors.white,
-                      )),
                   const SizedBox(
                     height: 20,
                   ),
+                  ElevatedButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 70)
+                    ),
+                      onPressed: (){
+                      if(authUser.email != "" && authUser.password !=""){
+                        authUser.RegisterUser(context);
+                      }
+                      },
+                      child: Text("Sign Up")),
+                  TextButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignIn()));
+                  }, 
+                      child: Text("Already have an account? Log in"))
                 ],
               ),
             )));

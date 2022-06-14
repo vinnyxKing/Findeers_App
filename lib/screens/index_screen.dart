@@ -1,4 +1,5 @@
 import 'package:findeers_app/utilities/app_colors.dart';
+import 'package:findeers_app/utilities/auth_method.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,21 @@ class IndexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text("Findeer",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+        backgroundColor: AppColours.mainColour,
+        elevation: 25,
+        actions: [
+          IconButton(
+              onPressed: () {
+               AuthUser authUser = AuthUser();
+               authUser.logOutUser(context);
+              },
+              icon: Icon(Icons.logout))
+        ],
+      ),
       body: Container(
           width: double.maxFinite,
           height: double.maxFinite,
@@ -28,32 +44,7 @@ class IndexScreen extends StatelessWidget {
                   const SizedBox(
                     height: 110,
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: AppColours.secondaryColour,
-                    ),
-                  ),
-                  RichText(
-                      text: TextSpan(
-                          text: "Findeer",
-                          style: TextStyle(
-                              color: AppColours.mainColour,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold),
-                          children: [
-                        TextSpan(
-                          text: "\n\n Devices",
-                          style: TextStyle(
-                            color: AppColours.mainColour,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ])),
+
                 ],
               )
             ],

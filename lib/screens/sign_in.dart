@@ -3,8 +3,10 @@ import 'package:findeers_app/widgets/button_widget.dart';
 import 'package:findeers_app/widgets/textfieldwidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../utilities/auth_method.dart';
 import 'homescreen.dart';
 import 'index_screen.dart';
+
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -14,13 +16,15 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  TextEditingController userNameController = TextEditingController();
+  AuthUser authUser = AuthUser();
+
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    userNameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
   }
 
@@ -76,14 +80,14 @@ class _SignInState extends State<SignIn> {
             Column(
               children: [
                 TextFieldWidget(
-                  textEditingController: userNameController,
-                  hintText: "Username",
+                  textEditingController: authUser.email,
+                  hintText: "Enter Email",
                   borderRadius: 30,
                 ),
                 SizedBox(height: 10),
                 TextFieldWidget(
-                  textEditingController: passwordController,
-                  hintText: "Password",
+                  textEditingController: authUser.password,
+                  hintText: "Enter Password",
                   borderRadius: 30,
                   isPass: true,
                 )
@@ -96,12 +100,15 @@ class _SignInState extends State<SignIn> {
                   maximumSize: const Size(300, 100),
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const IndexScreen()));
+                  if(authUser.email != "" && authUser.password != ""){
+                    authUser.loginUser(context);
+                  }
+                  //Navigator.of(context).push(MaterialPageRoute(
+                  //    builder: (context) => const IndexScreen()));
                 },
                 child: ButtonWidget(
                   backgroundcolor: AppColours.mainColour,
-                  text: "Enter",
+                  text: "Log In",
                   textColor: Colors.white,
                 )),
             const SizedBox(
