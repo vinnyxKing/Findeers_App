@@ -3,6 +3,7 @@ import 'package:findeers_app/widgets/button_widget.dart';
 import 'package:findeers_app/widgets/textfieldwidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../utilities/auth_method.dart';
 import 'homescreen.dart';
 import 'index_screen.dart';
@@ -99,7 +100,10 @@ class _SignInState extends State<SignIn> {
                   minimumSize: const Size(300, 100),
                   maximumSize: const Size(300, 100),
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                  sharedPreferences.setString('email', emailController.text);
+
                   if(authUser.email != "" && authUser.password != ""){
                     authUser.loginUser(context);
                   }

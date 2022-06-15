@@ -42,6 +42,18 @@ dependencies:
   posts: ^0.0.2
   shared_preferences: ^2.0.15
   flutter_launcher_icons: ^0.9.3
+  flutter_svg: ^0.20.0-nullsafety.3
+  flutter_blue: ^0.8.0
+  dio: ^4.0.0
+  flutter_polyline_points: ^1.0.0
+  google_maps_flutter: ^2.0.2
+  geolocator: ^8.2.1
+
+  flutter_google_places: ^0.3.0
+  #url_launcher: ^6.1.2
+  url_launcher: ^6.0.9
+  http: ^0.13.4
+  #flutter_scan_bluetooth: ^2.1.1
 
 flutter_icons:
   android: "launcher_icon"
