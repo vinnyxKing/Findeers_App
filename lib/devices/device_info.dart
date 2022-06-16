@@ -1,14 +1,10 @@
-
-
 import 'package:flutter/material.dart';
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
-
 
 import '../maps/mapUtility.dart';
 import '../maps/maps.dart';
 import 'connect.dart';
 import 'devices.dart';
-
 
 class Body_detail extends StatelessWidget {
   final DisplayDevices devices;
@@ -125,7 +121,7 @@ class DeviceTitleImageDisplay extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Device Name",
+            "\n\nDevice Name",
             style: TextStyle(color: Colors.white),
           ),
           Text(

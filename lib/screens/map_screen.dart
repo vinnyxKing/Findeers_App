@@ -18,14 +18,17 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: HomeScreen(stored),
-    floatingActionButton: FloatingActionButton(
-    onPressed: () {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ScanBlue()));
-    },
-    child: Icon(Icons.search),
-    ),
+      body: HomeScreen(stored),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => ScanBlue()));
+        },
+        child: Icon(
+          Icons.search,
+          color: Color.fromARGB(221, 35, 38, 56),
+        ),
+      ),
     );
   }
 }

@@ -1,16 +1,15 @@
 //
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
-
 
 import '../devices/body.dart';
 import '../devices/connect.dart';
 import '../devices/devices.dart';
-
+import '../utilities/auth_method.dart';
 
 class HomeScreen extends StatelessWidget {
   List<DisplayDevices> device = [];
@@ -20,7 +19,17 @@ class HomeScreen extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
+        backgroundColor: Color.fromARGB(31, 37, 33, 71),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                pref.remove('email');
+                AuthUser service = AuthUser();
+                service.logOutUser(context);
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: Body(device),
     );

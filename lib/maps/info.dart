@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 import '../devices/connect.dart';
 import '../devices/device_info.dart';
 import '../devices/devices.dart';
-
 
 class DeviceInfo extends StatelessWidget {
   final DisplayDevices devices;
@@ -17,12 +15,19 @@ class DeviceInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      appBar: buildAppBar(context),
+      appBar: AppBar(
+        backgroundColor: Colors.black12,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+        ),
+      ),
       body: Body_detail(devices: devices),
     );
   }
 
-  AppBar buildAppBar(BuildContext context) {
+  /*AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.black12,
       elevation: 0,
@@ -39,5 +44,5 @@ class DeviceInfo extends StatelessWidget {
         SizedBox(width: kdefaultpaddin / 2)
       ],
     );
-  }
+  }*/
 }
