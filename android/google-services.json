@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "821951391168",
+    "firebase_url": "https://finder-s-app-default-rtdb.firebaseio.com",
     "project_id": "finder-s-app",
     "storage_bucket": "finder-s-app.appspot.com"
   },

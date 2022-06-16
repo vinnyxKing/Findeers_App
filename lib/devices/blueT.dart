@@ -1,6 +1,9 @@
+import 'package:findeers_app/devices/storeto_database.dart';
+import 'package:findeers_app/utilities/auth_method.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../maps/home_screen.dart';
 import 'devices.dart';
@@ -108,7 +111,6 @@ class _ScanpageState extends State<Scanpage> {
     );
   }
 
-
   void onTap(ScanResult r) {
     r.device.connect();
 //where the saving has to be done
@@ -116,6 +118,12 @@ class _ScanpageState extends State<Scanpage> {
         address: r.device.id.id.toString(),
         name: r.device.name,
         val_rssi: r.rssi.toString()));
+
+    DisplayDevices stored_device2 = DisplayDevices(
+        name: r.device.name,
+        address: r.device.id.toString(),
+        val_rssi: r.rssi.toString());
+    StoreData(dev: stored_device2).write();
 
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => HomeScreen(stored_device)));
@@ -181,4 +189,6 @@ class showDev extends StatelessWidget {
             ),
     );
   }
+
+  AuthUser email = AuthUser();
 }

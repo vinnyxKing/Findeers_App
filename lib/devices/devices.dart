@@ -13,11 +13,13 @@ class DisplayDe extends StatelessWidget {
 }
 
 class DisplayDevices {
-  final String val_rssi, name, address;
+  String val_rssi, name, address;
 
   DisplayDevices({
     required this.val_rssi,
     required this.name,
     required this.address,
   });
+  Map<String, dynamic> toJson() =>
+      {'name': name, 'Mac Address': address, 'rssi': val_rssi};
 }
