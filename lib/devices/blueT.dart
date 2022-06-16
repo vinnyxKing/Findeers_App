@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
+
+import '../maps/home_screen.dart';
 import 'devices.dart';
-import 'home_screen.dart';
+
 //import 'main.dart';
 //import 'storedDevice.dart';
 
@@ -106,10 +108,10 @@ class _ScanpageState extends State<Scanpage> {
     );
   }
 
-  /* 장치 아이템을 탭 했을때 호출 되는 함수 */
+
   void onTap(ScanResult r) {
     r.device.connect();
-
+//where the saving has to be done
     stored_device.add(DisplayDevices(
         address: r.device.id.id.toString(),
         name: r.device.name,

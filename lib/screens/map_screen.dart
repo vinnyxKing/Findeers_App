@@ -1,6 +1,9 @@
 import 'package:findeers_app/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../devices/blueT.dart';
+import '../devices/devices.dart';
+import '../maps/home_screen.dart';
 import 'homescreen.dart';
 
 class MapScreen extends StatefulWidget {
@@ -11,54 +14,18 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  List<DisplayDevices> stored = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover, image: AssetImage("assets/location1.jpg"))),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                Row(
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: AppColours.secondaryColour,
-                      ),
-                    ),
-                    RichText(
-                      text: const TextSpan(
-                        text: "Findeer",
-                        style: TextStyle(
-                            color: AppColours.mainColour,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                Column()
-              ],
-            ),
-          ],
-        ),
-      ),
+        body: HomeScreen(stored),
+    floatingActionButton: FloatingActionButton(
+    onPressed: () {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => ScanBlue()));
+    },
+    child: Icon(Icons.search),
+    ),
     );
   }
 }

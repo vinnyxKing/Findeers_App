@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
-import 'package:flutter_blue/flutter_blue.dart';
-import 'package:layout/connect.dart';
-import 'package:layout/devices.dart';
-import 'package:layout/sectionss.dart';
+
+
+import 'connect.dart';
+import 'devices.dart';
 
 class storeddevices extends StatelessWidget {
   final DisplayDevices devices;

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 //   import 'package:flutter_blue/flutter_blue.dart';
-import 'package:layout/main.dart';
+//import 'package:layout/main.dart';
 
 const ktextcolor = Color(0xFF535353);
 const ktextlightcolor = Color(0xFFACACAC);

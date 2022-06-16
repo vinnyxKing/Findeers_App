@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/index_screen.dart';
+import '../screens/map_screen.dart';
 
 
 class AuthUser{
@@ -31,7 +32,7 @@ class AuthUser{
         preferences.setString('email', email.text);
 
         Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => IndexScreen()),
+            MaterialPageRoute(builder: (context) => MapScreen()),
                 (route) => false);
       });
     }catch(err){
@@ -73,6 +74,6 @@ class AuthUser{
     preferences.setString('email', email.text);
     auth.signOut();
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder:
-        (context) =>HomeScreen()), (route) => false);
+        (context) => HomeScreenDis()), (route) => false);
   }
 }

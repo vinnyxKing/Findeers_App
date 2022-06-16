@@ -63,7 +63,7 @@ class _SignUpState extends State<SignUp> {
                       IconButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HomeScreen()));
+                              builder: (context) => const HomeScreenDis()));
                         },
                         icon: Icon(Icons.arrow_back,
                             color: AppColours.secondaryColour),

@@ -53,7 +53,7 @@ class _SignInState extends State<SignIn> {
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HomeScreen()));
+                        builder: (context) => const HomeScreenDis()));
                   },
                   icon:
                       Icon(Icons.arrow_back, color: AppColours.secondaryColour),
@@ -108,7 +108,7 @@ class _SignInState extends State<SignIn> {
                     authUser.loginUser(context);
                   }
                   //Navigator.of(context).push(MaterialPageRoute(
-                  //    builder: (context) => const IndexScreen()));
+                    // builder: (context) => const IndexScreen()));
                 },
                 child: ButtonWidget(
                   backgroundcolor: AppColours.mainColour,

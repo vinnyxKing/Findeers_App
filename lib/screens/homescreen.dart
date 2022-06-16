@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import '../utilities/app_colors.dart';
 import '../widgets/button_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreenDis extends StatefulWidget {
+  const HomeScreenDis({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenDis> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreenDis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

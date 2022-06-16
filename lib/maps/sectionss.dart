@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:layout/connect.dart';
+
+
+import '../devices/connect.dart';
 
 class sections extends StatefulWidget {
   const sections({Key? key}) : super(key: key);

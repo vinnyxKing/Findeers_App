@@ -1,10 +1,14 @@
+
+
 import 'package:flutter/material.dart';
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
-import 'package:layout/connect.dart';
-import 'package:layout/maps.dart';
 
+
+import '../maps/mapUtility.dart';
+import '../maps/maps.dart';
+import 'connect.dart';
 import 'devices.dart';
-import 'mapUtility.dart';
+
 
 class Body_detail extends StatelessWidget {
   final DisplayDevices devices;

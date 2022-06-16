@@ -1,11 +1,16 @@
 //
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:layout/body.dart';
-//import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
-import 'package:layout/connect.dart';
 
-import 'devices.dart';
+//import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
+
+
+import '../devices/body.dart';
+import '../devices/connect.dart';
+import '../devices/devices.dart';
+
 
 class HomeScreen extends StatelessWidget {
   List<DisplayDevices> device = [];
