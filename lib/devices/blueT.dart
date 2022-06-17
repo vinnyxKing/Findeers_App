@@ -124,9 +124,13 @@ class _ScanpageState extends State<Scanpage> {
         address: r.device.id.toString(),
         val_rssi: r.rssi.toString());
     StoreData(dev: stored_device2).write();
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: ((context) => StoreData(
+              dev: stored_device2,
+            ))));
 
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => HomeScreen(stored_device)));
+    //Navigator.of(context).push(
+    //  MaterialPageRoute(builder: (context) => HomeScreen(stored_device)));
   }
 
   Widget listItem(ScanResult r) {
