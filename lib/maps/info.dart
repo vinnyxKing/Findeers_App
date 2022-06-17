@@ -26,23 +26,4 @@ class DeviceInfo extends StatelessWidget {
       body: Body_detail(devices: devices),
     );
   }
-
-  /*AppBar buildAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.black12,
-      elevation: 0,
-      leading: IconButton(
-        icon: SvgPicture.asset(
-          'svg/back-arrow.svg',
-          color: Colors.white,
-        ),
-        onPressed: () => Navigator.pop(context),
-      ),
-      actions: <Widget>[
-        IconButton(
-            onPressed: () {}, icon: SvgPicture.asset('svg/search-line.svg')),
-        SizedBox(width: kdefaultpaddin / 2)
-      ],
-    );
-  }*/
 }
