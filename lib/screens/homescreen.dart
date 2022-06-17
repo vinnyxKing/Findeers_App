@@ -59,8 +59,8 @@ class _HomeScreenState extends State<HomeScreenDis> {
               ),
               TextButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => SignUp()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SignUp()));
                   },
                   child: ButtonWidget(
                       backgroundcolor: Colors.white,
