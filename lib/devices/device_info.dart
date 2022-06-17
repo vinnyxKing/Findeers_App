@@ -46,8 +46,9 @@ class Body_detail extends StatelessWidget {
                           primary: Colors.white,
                           backgroundColor: Color.fromARGB(255, 25, 26, 25)),
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: ((context) => Location())));
+                        mapsspace space = mapsspace(devices.val_rssi);
+
+                        space.currentlocation();
                       },
                     ),
                     TextButton.icon(
@@ -62,8 +63,8 @@ class Body_detail extends StatelessWidget {
                           primary: Colors.white,
                           backgroundColor: Color.fromARGB(255, 25, 26, 25)),
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: ((context) => Locationn())));
+                        // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        //     builder: ((context) => Locationn())));
                       },
                     ),
 
