@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String upname = '';
   String upmac = '';
   String uprssi = '';
-  CollectionReference student = FirebaseFirestore.instance.collection('Users');
+  CollectionReference users = FirebaseFirestore.instance.collection('Users');
   List<DisplayDevices> devr = [];
   AuthUser check = AuthUser();
 
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
               child: StreamBuilder(
             //Fetching data from the documentId specified of the student
-            stream: student.doc(useremail).collection('Bluetooth').snapshots(),
+            stream: users.doc(useremail).collection('Bluetooth').snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               //Error Handling conditions
               if (snapshot.hasError) {
@@ -88,9 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     return Card(
                       child: ListTile(
-                        leading: Text(users['name']),
+                        leading: Text(users['rssi']),
                         subtitle: Text(users['mac']),
-                        title: Text(users['rssi']),
+                        title: Text(users['name']),
                         onTap: () {
                           Navigator.push(
                               context,

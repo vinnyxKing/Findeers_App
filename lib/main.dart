@@ -8,13 +8,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'maps/home_screen.dart';
 import 'screens/map_screen.dart';
 
-var useremail;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final SharedPreferences sharedpref = await SharedPreferences.getInstance();
-  useremail = sharedpref.getString('email');
-
+  var useremail = sharedpref.getString('email');
+  await FirebaseFirestore.instance
+      .collection('Users')
+      .doc(useremail)
+      .collection('Bluetooth')
+      .snapshots();
   runApp(MaterialApp(
     home: useremail == null ? HomeScreenDis() : HomeScreen(),
   ));
