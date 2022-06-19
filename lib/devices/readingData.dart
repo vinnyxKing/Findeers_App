@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class GetData extends StatefulWidget {
@@ -19,8 +19,7 @@ class _GetDataState extends State<GetData> {
     try {
       await productList.get().then((querySnapshot) {
         querySnapshot.docs.forEach((element) {
-          print(
-              "DIVCE ID***********************************************************");
+          
           print(element.data());
           itemList.add(element.data());
         });
@@ -31,8 +30,7 @@ class _GetDataState extends State<GetData> {
       print(e.toString());
       return null;
     }
-  }
-
+  }yy
   @override
   void initState() {
     //getDocid();
@@ -43,4 +41,4 @@ class _GetDataState extends State<GetData> {
   Widget build(BuildContext context) {
     return Container();
   }
-}
+}*/

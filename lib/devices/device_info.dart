@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:findeers_app/utilities/auth_method.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
 
@@ -8,7 +10,9 @@ import 'devices.dart';
 
 class Body_detail extends StatelessWidget {
   final DisplayDevices devices;
-  const Body_detail({Key? key, required this.devices}) : super(key: key);
+  String delid;
+  Body_detail({Key? key, required this.devices, required this.delid})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class Body_detail extends StatelessWidget {
                     TextButton.icon(
                       icon: Icon(Icons.search),
                       label: Text(
-                        "Find device Second way",
+                        "Delete Device",
                         style: Theme.of(context).textTheme.headline5?.copyWith(
                             color: Color.fromARGB(255, 190, 180, 180),
                             fontWeight: FontWeight.bold),
@@ -62,9 +66,19 @@ class Body_detail extends StatelessWidget {
                       style: TextButton.styleFrom(
                           primary: Colors.white,
                           backgroundColor: Color.fromARGB(255, 25, 26, 25)),
-                      onPressed: () {
-                        // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        //     builder: ((context) => Locationn())));
+                      onPressed: () async {
+                        AuthUser user = AuthUser();
+                        String email = user.auth.currentUser!.email.toString();
+/*await Firestore.instance.runTransaction((Transaction myTransaction) async {
+    await myTransaction.delete(snapshot.data.documents[index].reference);
+});*/
+
+                        FirebaseFirestore.instance
+                            .collection("Users")
+                            .doc(email)
+                            .collection("Bluetooth")
+                            .doc(delid)
+                            .delete();
                       },
                     ),
 

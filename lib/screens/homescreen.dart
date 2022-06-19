@@ -7,7 +7,7 @@ import '../utilities/app_colors.dart';
 import '../widgets/button_widget.dart';
 
 class HomeScreenDis extends StatefulWidget {
-  const HomeScreenDis({Key? key}) : super(key: key);
+  // const HomeScreenDis({Key? key}) : super(key: key);
 
   @override
   State<HomeScreenDis> createState() => _HomeScreenState();

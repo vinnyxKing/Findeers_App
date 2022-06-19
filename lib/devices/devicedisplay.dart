@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
 
-
 import 'connect.dart';
 import 'devices.dart';
 
-class storeddevices extends StatelessWidget {
+class storeddevices extends StatefulWidget {
   final DisplayDevices devices;
 
   final Function press;
@@ -16,9 +15,14 @@ class storeddevices extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<storeddevices> createState() => _storeddevicesState();
+}
+
+class _storeddevicesState extends State<storeddevices> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (() => press()),
+      onTap: (() => widget.press()),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,12 +40,12 @@ class storeddevices extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: kdefaultpaddin / 4),
             child: Text(
-              devices.name,
+              widget.devices.name,
               style: TextStyle(color: ktextlightcolor),
             ),
           ),
           Text(
-            "\$Mac_Address ${devices.address}",
+            "\$Mac_Address ${widget.devices.address}",
             style: TextStyle(fontWeight: FontWeight.bold),
           )
         ],

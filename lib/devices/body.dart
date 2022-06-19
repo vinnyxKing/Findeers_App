@@ -1,5 +1,5 @@
 //import 'dart:html';
-
+/*
 import 'package:flutter/material.dart';
 
 //import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
             ),
           ),
           sections(),
-          //  storeddevices(),
+          // storeddevices(),
           Expanded(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kdefaultpaddin),
@@ -53,6 +53,7 @@ class Body extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => DeviceInfo(
                                 devices: devic[index],
+
                               )))),
             ),
           ))
@@ -68,3 +69,4 @@ class Body extends StatelessWidget {
     );
   }
 }
+*/
