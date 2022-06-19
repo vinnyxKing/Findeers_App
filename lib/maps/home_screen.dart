@@ -6,7 +6,7 @@ import 'package:findeers_app/maps/sectionss.dart';
 import 'package:findeers_app/utilities/auth_method.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'info.dart';
 
 var useremail;
@@ -42,9 +42,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/log4.jpg"),
+    fit: BoxFit.cover)),
+    child: Scaffold(
+backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 238, 232, 232),
+        backgroundColor: Colors.grey,
+        title: Text("Findeers",
+            textDirection: TextDirection.ltr,
+            style: GoogleFonts.lobster(fontSize: 40,
+            fontWeight: FontWeight.bold,
+              color: Colors.blueGrey,
+        ),),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: Icon(Icons.arrow_back),
@@ -63,18 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: kdefaultpaddin),
-            child: Text(
-              "FindersApp",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ),
+
           ),
           sections(),
 
@@ -140,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
               .push(MaterialPageRoute(builder: (context) => ScanBlue()));
         },
         child: Icon(Icons.search),
-      ),
+      )),
     );
   }
 }

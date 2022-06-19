@@ -23,6 +23,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController lNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   //TextEditingController pass2Controller = TextEditingController();
   TextEditingController genderController = TextEditingController();
 
@@ -41,16 +42,17 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/log1-modified.jpg"))),
-            child: SingleChildScrollView(
+    return Container(
+        width: double.maxFinite,
+        height: double.maxFinite,
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/log1-modified.jpg"))),
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
