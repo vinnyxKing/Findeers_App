@@ -26,10 +26,7 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(Icons.logout))
         ],
       ),
-      body: Container(
-        
-          //SizedBox(height: MediaQuery.of(context).size.height / 6),
-      )
+      body: Body(device)
     );
   }
 
