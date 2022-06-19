@@ -44,7 +44,26 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 238, 232, 232),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              SharedPreferences pref = await SharedPreferences.getInstance();
+              pref.remove('email');
+              AuthUser service = AuthUser();
+              service.logOutUser(context);
+            },
+            icon: Icon(Icons.logout),
+            color: Colors.black,
+          ),
+        ],
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
