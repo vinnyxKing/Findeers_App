@@ -125,49 +125,13 @@ class _ScanpageState extends State<Scanpage> {
     StoreData reciev = StoreData();
 
     reciev.write(stored_device2);
-    print("222222222TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
-    stored_device3 = await reciev.read();
-    // reciev.getDocid();
-
-    //Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //  builder: ((context) => StoreData(
-    //         dev: stored_device2,
-    //   ))));
-    print("3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
-    stored_device3.forEach((element) {
-      print("NOTTTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
-      stored_device.add(DisplayDevices(
-          address: element.address.toString(),
-          name: element.name,
-          val_rssi: element.val_rssi.toString()));
-    });
-    print("3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
-
-    /* stored_device.add(DisplayDevices(
-        address: r.device.id.id.toString(),
-        name: r.device.name,
-        val_rssi: r.rssi.toString()));*/
 
     AuthUser authen = AuthUser();
     String email = authen.auth.currentUser!.email.toString();
     authen.loginUser(email);
 
-    //HomeScreen(stored_device3).createState().initState();
-
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => HomeScreen()));
-
-    /*  setState(() {
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => HomeScreen(stored_device3)));
-    });
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-          builder: (context) => HomeScreen(
-              stored_device3)), // this mainpage is your page to refresh
-      (Route<dynamic> route) => false,
-    );*/
   }
 
   Widget listItem(ScanResult r) {
@@ -184,38 +148,38 @@ class _ScanpageState extends State<Scanpage> {
   Widget build(BuildContext context) {
     return Container(
         constraints: const BoxConstraints.expand(),
-    decoration: const BoxDecoration(
-    image: DecorationImage(
-    image: AssetImage("assets/sdf-modified.png"),
-    fit: BoxFit.cover)),
-    child: Scaffold(
-    backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: GoogleFonts.kdamThmor(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 1
-              ..color = Colors.white70,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/sdf-modified.png"),
+                fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text(
+              widget.title,
+              style: GoogleFonts.kdamThmor(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                foreground: Paint()
+                  ..style = PaintingStyle.stroke
+                  ..strokeWidth = 1
+                  ..color = Colors.white70,
+              ),
+            ),
+            centerTitle: true,
           ),
-        ),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: ListView.separated(
-          itemCount: scanResultList.length,
-          itemBuilder: (context, index) {
-            return listItem(scanResultList[index]);
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return Divider();
-          },
-        ),
-      ),)
-    );
+          body: Center(
+            child: ListView.separated(
+              itemCount: scanResultList.length,
+              itemBuilder: (context, index) {
+                return listItem(scanResultList[index]);
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return Divider();
+              },
+            ),
+          ),
+        ));
   }
 }
 

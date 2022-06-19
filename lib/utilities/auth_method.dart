@@ -72,21 +72,22 @@ class AuthUser {
           .createUserWithEmailAndPassword(
               email: email.text, password: password.text)
           .then((value) async {
-        StoreData reciev = StoreData();
+        print("user resgistered");
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString('email', email.text);
 
-        device = await reciev.read();
-
-        print("User is Registered");
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+            (route) => false);
       });
-    } catch (err) {
+    } catch (e) {
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Error Occured"),
-              content: Text(err.toString()),
+              title: Text("Error Message"),
+              content: Text(e.toString()),
             );
           });
     }
