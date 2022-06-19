@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../utilities/auth_method.dart';
 import 'homescreen.dart';
-import 'index_screen.dart';
-
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -101,14 +99,13 @@ class _SignInState extends State<SignIn> {
                   maximumSize: const Size(300, 100),
                 ),
                 onPressed: () async {
-                  final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
                   sharedPreferences.setString('email', emailController.text);
 
-                  if(authUser.email != "" && authUser.password != ""){
+                  if (authUser.email != "" && authUser.password != "") {
                     authUser.loginUser(context);
                   }
-                  //Navigator.of(context).push(MaterialPageRoute(
-                    // builder: (context) => const IndexScreen()));
                 },
                 child: ButtonWidget(
                   backgroundcolor: AppColours.mainColour,

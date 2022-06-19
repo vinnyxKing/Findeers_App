@@ -11,6 +11,8 @@ Future<void> main() async {
   final SharedPreferences sharedpref = await SharedPreferences.getInstance();
   var useremail = sharedpref.getString('email');
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: useremail == null ? HomeScreenDis() : MapScreen(),
   ));
 }
+

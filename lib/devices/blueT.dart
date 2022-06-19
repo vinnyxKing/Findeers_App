@@ -125,8 +125,8 @@ class _ScanpageState extends State<Scanpage> {
         val_rssi: r.rssi.toString());
     StoreData(dev: stored_device2).write();
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: ((context) => StoreData(
-              dev: stored_device2,
+        builder: ((context) => HomeScreen(
+              stored_device
             ))));
 
     //Navigator.of(context).push(

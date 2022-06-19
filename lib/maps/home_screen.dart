@@ -1,11 +1,6 @@
-//
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-//import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
-
 import '../devices/body.dart';
 import '../devices/connect.dart';
 import '../devices/devices.dart';
@@ -31,7 +26,10 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(Icons.logout))
         ],
       ),
-      body: Body(device),
+      body: Container(
+        
+          //SizedBox(height: MediaQuery.of(context).size.height / 6),
+      )
     );
   }
 
