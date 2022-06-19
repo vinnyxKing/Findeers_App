@@ -3,6 +3,7 @@ import 'package:findeers_app/screens/sign_in.dart';
 import 'package:findeers_app/screens/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utilities/app_colors.dart';
 import '../widgets/button_widget.dart';
 
@@ -18,8 +19,14 @@ class _HomeScreenState extends State<HomeScreenDis> {
 
   @override
   Widget build(BuildContext context) {
+return Container(
+  decoration: const BoxDecoration(
+      image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage("assets/7.jpg"))),
 
-    return Scaffold(
+    child: Scaffold(
+      backgroundColor: Colors.transparent,
       body: Container(
         width: double.maxFinite,
         height: double.maxFinite,
@@ -32,14 +39,15 @@ class _HomeScreenState extends State<HomeScreenDis> {
               RichText(
                 text: TextSpan(
                     text: "Findeer",
-                    style: TextStyle(
-                        color: AppColours.mainColour,
-                        fontSize: 60,
-                        fontWeight: FontWeight.bold),
+                    style: GoogleFonts.fjallaOne(
+                      fontSize: 70,
+                      fontWeight: FontWeight.bold,
+                      color: AppColours.mainColour,
+                    ),
                     children: [
                       TextSpan(
                         text: "\nFind All the Important things",
-                        style: TextStyle(
+                        style: GoogleFonts.abrilFatface(
                           color: AppColours.mainColour,
                           fontSize: 20,
                         ),
@@ -72,11 +80,8 @@ class _HomeScreenState extends State<HomeScreenDis> {
             ],
           ),
         ),
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("assets/bg2-modified.jpg"))),
-      ),
+
+      ),)
     );
   }
 }
