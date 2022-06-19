@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Container(
-        
+
           //SizedBox(height: MediaQuery.of(context).size.height / 6),
       )
     );
