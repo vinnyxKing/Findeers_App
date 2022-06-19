@@ -37,6 +37,7 @@ class _ScanpageState extends State<Scanpage> {
   List<ScanResult> scanResultList = [];
   //List<DisplayDevices> dev
   List<DisplayDevices> stored_device = [];
+  List<DisplayDevices> stored_device3 = [];
 
   bool _isScanning = false;
 
@@ -111,26 +112,62 @@ class _ScanpageState extends State<Scanpage> {
     );
   }
 
-  void onTap(ScanResult r) {
+  void onTap(ScanResult r) async {
     r.device.connect();
-//where the saving has to be done
-    stored_device.add(DisplayDevices(
-        address: r.device.id.id.toString(),
-        name: r.device.name,
-        val_rssi: r.rssi.toString()));
 
     DisplayDevices stored_device2 = DisplayDevices(
         name: r.device.name,
         address: r.device.id.toString(),
         val_rssi: r.rssi.toString());
-    StoreData().write(stored_device2);
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: ((context) => HomeScreen(
-              stored_device
-            ))));
+    StoreData reciev = StoreData();
 
-    //Navigator.of(context).push(
-    //  MaterialPageRoute(builder: (context) => HomeScreen(stored_device)));
+    reciev.write(stored_device2);
+    print(
+        "222222222TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
+    stored_device3 = await reciev.read();
+    // reciev.getDocid();
+
+    //Navigator.of(context).pushReplacement(MaterialPageRoute(
+    //  builder: ((context) => StoreData(
+    //         dev: stored_device2,
+    //   ))));
+    print(
+        "3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
+    stored_device3.forEach((element) {
+      print("NOTTTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
+      stored_device.add(DisplayDevices(
+          address: element.address.toString(),
+          name: element.name,
+          val_rssi: element.val_rssi.toString()));
+    });
+    print(
+        "3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
+
+    /* stored_device.add(DisplayDevices(
+        address: r.device.id.id.toString(),
+        name: r.device.name,
+        val_rssi: r.rssi.toString()));*/
+
+    AuthUser authen = AuthUser();
+    String email = authen.auth.currentUser!.email.toString();
+    authen.loginUser(email);
+
+    //HomeScreen(stored_device3).createState().initState();
+
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+
+    /*  setState(() {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => HomeScreen(stored_device3)));
+    });
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+          builder: (context) => HomeScreen(
+              stored_device3)), // this mainpage is your page to refresh
+      (Route<dynamic> route) => false,
+    );*/
   }
 
   Widget listItem(ScanResult r) {
@@ -175,22 +212,22 @@ class showDev extends StatelessWidget {
       appBar: AppBar(title: Text('New Screen')),
       body: stored.isEmpty
           ? Center(
-              child: Text('no device'),
-            )
+        child: Text('no device'),
+      )
           : ListView.builder(
-              itemCount: stored.length,
-              itemBuilder: (c, i) {
-                print("device is");
-                print(stored[i].address);
-                return ListTile(
-                  leading: Icon(Icons.bluetooth),
-                  title: Text(stored[i].name),
-                  subtitle: Text(stored[i].address),
-                  trailing: Text(stored[i].val_rssi),
-                  onTap: () {},
-                );
-              },
-            ),
+        itemCount: stored.length,
+        itemBuilder: (c, i) {
+          print("device is");
+          print(stored[i].address);
+          return ListTile(
+            leading: Icon(Icons.bluetooth),
+            title: Text(stored[i].name),
+            subtitle: Text(stored[i].address),
+            trailing: Text(stored[i].val_rssi),
+            onTap: () {},
+          );
+        },
+      ),
     );
   }
 
