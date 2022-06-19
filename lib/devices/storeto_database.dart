@@ -2,26 +2,27 @@ import 'package:findeers_app/devices/devices.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:core';
+
+var useremail;
 
 class StoreData extends StatelessWidget {
   // final dbase = FirebaseFirestore.instance;
-  final DisplayDevices dev;
-  StoreData({Key? key, required this.dev}) : super(key: key);
-  var useremail;
+  //final DisplayDevices dev;
+  //StoreData({Key? key, required this.dev}) : super(key: key);
   CollectionReference userReg = FirebaseFirestore.instance.collection('Users');
 
-  Future write() async {
+  Future write(DisplayDevices dev) async {
     //WidgetsFlutterBinding.ensureInitialized();
     //await Firebase.initializeApp();
     final SharedPreferences sharedpref = await SharedPreferences.getInstance();
-    useremail = sharedpref.getString('email');
+    var useremail = sharedpref.getString('email');
     //print("EMAILLLLLLLLLLLLLLLL ISSSSSSSS :");
     //print(useremail);
     return await userReg.doc(useremail).collection('Bluetooth').add({
       'name': dev.name,
       'mac': dev.address,
       'rssi': dev.val_rssi,
+      'uid': useremail,
     });
     /*  await dbase.collection("Users").add({
       'name': dev.name,
@@ -35,42 +36,29 @@ class StoreData extends StatelessWidget {
     //dev.toJson()
   }
 
-  // final SharedPreferences sharedpref = await SharedPreferences.getInstance();
-  //var useremail = sharedpref.getString('email');
-  Stream<List<DisplayDevices>> readuserdata() => userReg
-      .doc(useremail)
-      .collection('Bluetooth')
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .map((doc) => DisplayDevices.fromJson(doc.data()))
-          .toList());
+  Future<List<DisplayDevices>> read() async {
+    final SharedPreferences sharedpref = await SharedPreferences.getInstance();
+    useremail = sharedpref.getString('email');
+    print("READDDDDDDDDDDDDDDDDDDDDDDDD ISSSSSSSS :");
+    List<DisplayDevices> devse = [];
+    FirebaseFirestore.instance
+        .collection('Users')
+        .doc(useremail)
+        .collection('Bluetooth')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        devse.add(DisplayDevices(
+            val_rssi: doc["rssi"], name: doc["name"], address: doc["mac"]));
+        print("#####**********************************************#####");
+        print(doc["mac"]);
+      });
+    });
+    return devse;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text("yessss")),
-        body: StreamBuilder<List<DisplayDevices>>(
-            stream: readuserdata(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text("i dont know! ${snapshot}");
-              }
-              if (snapshot.hasData) {
-                final users = snapshot.data!;
-
-                return ListView(children: users.map(buildUser).toList());
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            }));
+    return Container();
   }
-
-  Widget buildUser(DisplayDevices dev) => ListTile(
-        leading: Text(dev.name),
-        subtitle: Text(dev.address),
-        title: Text(dev.val_rssi),
-        trailing: Text("hello"),
-      );
 }

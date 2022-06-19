@@ -63,7 +63,7 @@ class _SignUpState extends State<SignUp> {
                       IconButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HomeScreenDis()));
+                              builder: (context) => HomeScreenDis()));
                         },
                         icon: Icon(Icons.arrow_back,
                             color: AppColours.secondaryColour),
@@ -107,7 +107,6 @@ class _SignUpState extends State<SignUp> {
                         hintText: "Enter Email",
                         borderRadius: 30,
                       ),
-
                       SizedBox(height: 10),
                       TextFieldWidget(
                         textEditingController: authUser.password,
@@ -154,18 +153,19 @@ class _SignUpState extends State<SignUp> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 70)
-                    ),
-                      onPressed: (){
-                      if(authUser.email != "" && authUser.password !=""){
-                        authUser.RegisterUser(context);
-                      }
+                      style: TextButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 70)),
+                      onPressed: () {
+                        if (authUser.email != "" && authUser.password != "") {
+                          authUser.RegisterUser(context);
+                        }
                       },
                       child: Text("Sign Up")),
-                  TextButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignIn()));
-                  }, 
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SignIn()));
+                      },
                       child: Text("Already have an account? Log in"))
                 ],
               ),

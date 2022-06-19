@@ -9,7 +9,9 @@ import '../devices/devices.dart';
 class DeviceInfo extends StatelessWidget {
   final DisplayDevices devices;
 
-  const DeviceInfo({Key? key, required this.devices}) : super(key: key);
+  String delid;
+  DeviceInfo({Key? key, required this.devices, required this.delid})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class DeviceInfo extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      body: Body_detail(devices: devices),
+      body: Body_detail(devices: devices, delid: delid),
     );
   }
 }

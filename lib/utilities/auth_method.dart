@@ -4,6 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../devices/devices.dart';
+import '../devices/storeto_database.dart';
+import '../maps/home_screen.dart';
 import '../screens/index_screen.dart';
 import '../screens/map_screen.dart';
 
@@ -12,6 +15,7 @@ class AuthUser {
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  List<DisplayDevices> device = [];
 
   void loginUser(context) async {
     try {
@@ -32,10 +36,13 @@ class AuthUser {
 
         SharedPreferences preferences = await SharedPreferences.getInstance();
         preferences.setString('email', email.text);
+        StoreData reciev = StoreData();
+
+        device = await reciev.read();
 
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => MapScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen()),
             (route) => false);
       });
     } catch (err) {
@@ -64,10 +71,14 @@ class AuthUser {
       await auth
           .createUserWithEmailAndPassword(
               email: email.text, password: password.text)
-          .then((value) {
+          .then((value) async {
+        StoreData reciev = StoreData();
+
+        device = await reciev.read();
+
         print("User is Registered");
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const MapScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
       });
     } catch (err) {
       showDialog(

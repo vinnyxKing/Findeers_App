@@ -1,5 +1,5 @@
 //import 'dart:html';
-
+/*
 import 'package:flutter/material.dart';
 import '../maps/info.dart';
 import '../maps/sectionss.dart';
@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
             ),
           ),
           sections(),
-          //  storeddevices(),
+          // storeddevices(),
           Expanded(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kdefaultpaddin),
@@ -50,6 +50,7 @@ class Body extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => DeviceInfo(
                                 devices: devic[index],
+
                               )))),
             ),
           ))
@@ -65,3 +66,4 @@ class Body extends StatelessWidget {
     );
   }
 }
+*/

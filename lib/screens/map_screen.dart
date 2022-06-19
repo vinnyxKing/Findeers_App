@@ -18,7 +18,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeScreen(stored),
+      body: HomeScreen(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)

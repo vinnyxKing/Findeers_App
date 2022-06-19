@@ -7,7 +7,7 @@ import '../utilities/app_colors.dart';
 import '../widgets/button_widget.dart';
 
 class HomeScreenDis extends StatefulWidget {
-  const HomeScreenDis({Key? key}) : super(key: key);
+  // const HomeScreenDis({Key? key}) : super(key: key);
 
 
   @override
@@ -62,8 +62,8 @@ class _HomeScreenState extends State<HomeScreenDis> {
               ),
               TextButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => SignUp()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SignUp()));
                   },
                   child: ButtonWidget(
                       backgroundcolor: Colors.white,
