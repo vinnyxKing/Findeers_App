@@ -1,10 +1,8 @@
-import 'package:findeers_app/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
-
 import '../devices/blueT.dart';
 import '../devices/devices.dart';
 import '../maps/home_screen.dart';
-import 'homescreen.dart';
+
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);

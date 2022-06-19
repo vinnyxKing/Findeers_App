@@ -3,6 +3,7 @@ import 'package:findeers_app/utilities/auth_method.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../maps/home_screen.dart';
@@ -13,6 +14,7 @@ import 'devices.dart';
 
 class ScanBlue extends StatelessWidget {
   final title = 'avaliable devices';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +37,7 @@ class Scanpage extends StatefulWidget {
 class _ScanpageState extends State<Scanpage> {
   FlutterBlue flutterBlue = FlutterBlue.instance;
   List<ScanResult> scanResultList = [];
+
   //List<DisplayDevices> dev
   List<DisplayDevices> stored_device = [];
   List<DisplayDevices> stored_device3 = [];
@@ -122,8 +125,7 @@ class _ScanpageState extends State<Scanpage> {
     StoreData reciev = StoreData();
 
     reciev.write(stored_device2);
-    print(
-        "222222222TTTTTTTTTTTTTTTTTTTTTTTTTTT*********************************");
+    print("222222222TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
     stored_device3 = await reciev.read();
     // reciev.getDocid();
 
@@ -131,17 +133,15 @@ class _ScanpageState extends State<Scanpage> {
     //  builder: ((context) => StoreData(
     //         dev: stored_device2,
     //   ))));
-    print(
-        "3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*********************************");
+    print("3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
     stored_device3.forEach((element) {
-      print("NOTTTTTTTTTTTTTTTTTTTTTTTTTTTT*********************************");
+      print("NOTTTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
       stored_device.add(DisplayDevices(
           address: element.address.toString(),
           name: element.name,
           val_rssi: element.val_rssi.toString()));
     });
-    print(
-        "3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*********************************");
+    print("3333333TTTTTTTTTTTTTTTTTTTTTTTTTTT*************");
 
     /* stored_device.add(DisplayDevices(
         address: r.device.id.id.toString(),
@@ -182,9 +182,27 @@ class _ScanpageState extends State<Scanpage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+        constraints: const BoxConstraints.expand(),
+    decoration: const BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage("assets/sdf-modified.png"),
+    fit: BoxFit.cover)),
+    child: Scaffold(
+    backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: GoogleFonts.kdamThmor(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 1
+              ..color = Colors.white70,
+          ),
+        ),
+        centerTitle: true,
       ),
       body: Center(
         child: ListView.separated(
@@ -196,7 +214,7 @@ class _ScanpageState extends State<Scanpage> {
             return Divider();
           },
         ),
-      ),
+      ),)
     );
   }
 }
