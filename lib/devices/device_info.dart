@@ -22,83 +22,86 @@ class Body_detail extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
         decoration: const BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("assets/w.jpg"))),
-    child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: size.height,
-            child: Stack(children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: size.height * 0.3),
-                padding: EdgeInsets.only(
-                  top: size.height * 0.12,
-                  left: kdefaultpaddin,
-                  right: kdefaultpaddin,
-                ),
-                //height: 500,
-                // decoration: BoxDecoration(
-                //   color: Colors.white,
-                //  borderRadius: BorderRadius.only(
-                //     topLeft: Radius.circular(24),
-                //    topRight: Radius.circular(24))),
-                child: Column(
-                  children: <Widget>[
-                    TextButton.icon(
-                      icon: Icon(Icons.search),
-                      label: Text(
-                        "Find device",
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      style: TextButton.styleFrom(
-                          primary: Colors.white,
-                          backgroundColor: Color(0xff0099DD)),
-                      onPressed: () {
-                        mapsspace space = mapsspace(devices.val_rssi);
-
-                        space.currentlocation();
-                      },
+                fit: BoxFit.cover, image: AssetImage("assets/w.jpg"))),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: size.height,
+                child: Stack(children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(top: size.height * 0.3),
+                    padding: EdgeInsets.only(
+                      top: size.height * 0.12,
+                      left: kdefaultpaddin,
+                      right: kdefaultpaddin,
                     ),
-                    TextButton.icon(
-                      icon: Icon(Icons.search),
-                      label: Text(
-                        "Delete Device",
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      style: TextButton.styleFrom(
-                          primary: Colors.white,
-                          backgroundColor: Color(0xffBF1304)),
-                      onPressed: () async {
-                        AuthUser user = AuthUser();
-                        String email = user.auth.currentUser!.email.toString();
-/*await Firestore.instance.runTransaction((Transaction myTransaction) async {
-    await myTransaction.delete(snapshot.data.documents[index].reference);
-});*/
+                    //height: 500,
+                    // decoration: BoxDecoration(
+                    //   color: Colors.white,
+                    //  borderRadius: BorderRadius.only(
+                    //     topLeft: Radius.circular(24),
+                    //    topRight: Radius.circular(24))),
+                    child: Column(
+                      children: <Widget>[
+                        TextButton.icon(
+                          icon: Icon(Icons.search),
+                          label: Text(
+                            "Find device",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                          ),
+                          style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              backgroundColor: Color(0xff0099DD)),
+                          onPressed: () {
+                            mapsspace space = mapsspace(devices.val_rssi);
 
-                        FirebaseFirestore.instance
-                            .collection("Users")
-                            .doc(email)
-                            .collection("Bluetooth")
-                            .doc(delid)
-                            .delete();
-                      },
+                            space.currentlocation();
+                          },
+                        ),
+                        TextButton.icon(
+                          icon: Icon(Icons.search),
+                          label: Text(
+                            "Delete Device",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                ?.copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                          ),
+                          style: TextButton.styleFrom(
+                              primary: Colors.white,
+                              backgroundColor: Color(0xffBF1304)),
+                          onPressed: () async {
+                            AuthUser user = AuthUser();
+                            String email =
+                                user.auth.currentUser!.email.toString();
+
+                            FirebaseFirestore.instance
+                                .collection("Users")
+                                .doc(email)
+                                .collection("Bluetooth")
+                                .doc(delid)
+                                .delete();
+                          },
+                        ),
+
+                        // ColorsD(),
+                      ],
                     ),
-
-                    // ColorsD(),
-                  ],
-                ),
-              ),
-              DeviceTitleImageDisplay(devices: devices)
-            ]),
-          )
-        ],
-      ),)
-    );
+                  ),
+                  DeviceTitleImageDisplay(devices: devices)
+                ]),
+              )
+            ],
+          ),
+        ));
   }
 }
 
@@ -142,13 +145,12 @@ class DeviceTitleImageDisplay extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            "\n\nDevice Name",
-            style: GoogleFonts.ubuntu(fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )
-          ),
+          Text("\n\nDevice Name",
+              style: GoogleFonts.ubuntu(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              )),
           Text(
             devices.name,
             style: Theme.of(context)
@@ -161,11 +163,14 @@ class DeviceTitleImageDisplay extends StatelessWidget {
             children: <Widget>[
               RichText(
                   text: TextSpan(children: [
-                TextSpan(text: "Mac_Address \n",
-                style: GoogleFonts.josefinSans(fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff025159),
-                ),),
+                TextSpan(
+                  text: "Mac_Address \n",
+                  style: GoogleFonts.josefinSans(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff025159),
+                  ),
+                ),
                 TextSpan(
                     text: "\$${devices.address}\n",
                     style: Theme.of(context).textTheme.headline4?.copyWith(

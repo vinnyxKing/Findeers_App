@@ -104,7 +104,6 @@ class _ScanpageState extends State<Scanpage> {
     return Text(name);
   }
 
-  /* BLE 아이콘 위젯 */
   Widget leading(ScanResult r) {
     return CircleAvatar(
       child: Icon(
@@ -125,10 +124,6 @@ class _ScanpageState extends State<Scanpage> {
     StoreData reciev = StoreData();
 
     reciev.write(stored_device2);
-
-    AuthUser authen = AuthUser();
-    String email = authen.auth.currentUser!.email.toString();
-    authen.loginUser(email);
 
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => HomeScreen()));
@@ -212,6 +207,4 @@ class showDev extends StatelessWidget {
             ),
     );
   }
-
-  AuthUser email = AuthUser();
 }

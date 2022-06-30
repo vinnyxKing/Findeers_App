@@ -87,66 +87,60 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: kdefaultpaddin),
               ),
               sections(),
+              Expanded(
+                  child: StreamBuilder(
+                stream:
+                    users.doc(useremail).collection('Bluetooth').snapshots(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  //Error Handling conditions
+                  if (snapshot.hasError) {
+                    return Text("Something went wrong");
+                  }
 
-              //  storeddevices(),
-              if (useremail != null)
-                Expanded(
-                    child: StreamBuilder(
-                  //Fetching data from the documentId specified of the student
-                  stream: users
-                      .doc(useremail == null ? '' : useremail)
-                      .collection('Bluetooth')
-                      .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    //Error Handling conditions
-                    if (snapshot.hasError) {
-                      return Text("Something went wrong");
-                    }
+                  //Data is output to the user
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final DocumentSnapshot users =
+                            snapshot.data!.docs[index];
+                        String id = snapshot.data!.docs[index].id.toString();
+                        upmac = users['mac'];
+                        upname = users['name'];
+                        uprssi = users['rssi'];
+                        // String ch = users['uid'];
 
-                    //Data is output to the user
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                        itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          final DocumentSnapshot users =
-                              snapshot.data!.docs[index];
-                          String id = snapshot.data!.docs[index].id.toString();
-                          upmac = users['mac'];
-                          upname = users['name'];
-                          uprssi = users['rssi'];
-                          // String ch = users['uid'];
-
-                          devr.add(DisplayDevices(
-                              address: upmac, name: upname, val_rssi: uprssi));
-                          return Card(
-                            color: Color(0xffDEEFE7),
-                            child: ListTile(
-                              leading: Text(users['rssi']),
-                              subtitle: Text(users['mac']),
-                              title: Text(users['name']),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => DeviceInfo(
-                                              devices: devr[index],
-                                              delid: id,
-                                            )));
-                              }
-                              // Navigator.of(context).push(MaterialPageRoute(
-                              // builder: (context) => HomeScreen(devr)));
-                              ,
-                            ),
-                          );
-                        },
-                      );
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  },
-                ))
+                        devr.add(DisplayDevices(
+                            address: upmac, name: upname, val_rssi: uprssi));
+                        return Card(
+                          color: Color(0xffDEEFE7),
+                          child: ListTile(
+                            leading: Text(users['rssi']),
+                            subtitle: Text(users['mac']),
+                            title: Text(users['name']),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DeviceInfo(
+                                            devices: devr[index],
+                                            delid: id,
+                                          )));
+                            }
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            // builder: (context) => HomeScreen(devr)));
+                            ,
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ))
             ],
           ),
           floatingActionButton: FloatingActionButton(
